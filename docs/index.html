@@ -52,6 +52,11 @@
    </div>
    <button id="btn1" class="button">EXPAND</button>
    <button id="btn2" class="button">CLOSE</button>
+   <br>
+   <br>
+   <input type="text" id="youtubeUrl" placeholder="Enter YouTube URL">
+   <button id="loadVideo">Load Video</button>
+   <iframe id="youtubeFrame" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
 </body>
 
 <script>
@@ -112,5 +117,16 @@
    // let pic = document.createElement('img'); //создаем img
    // pic.src = tg.initDataUnsafe.user.photo_url; //задаём src 
    // usercard.appendChild(pic); //добавляем элемент в карточку 
+
+   // Youtube Play код
+   document.getElementById('loadVideo').addEventListener('click', function(){
+       const url = document.getElementById('youtubeUrl').value;
+       const videoId = url.split('v=')[1];
+       const ampersandPosition = videoId.indexOf('&');
+       if(ampersandPosition !== -1) {
+         videoId = videoId.substring(0, ampersandPosition);
+       }
+       document.getElementById('youtubeFrame').src = `https://www.youtube.com/embed/${videoId}`;
+   });
 </script>
 </html>
